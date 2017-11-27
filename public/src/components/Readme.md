@@ -1,3 +1,5 @@
+----Read in RAW form----
+
 I should've asked for help and stay late after class. There's a problem with that though, I never know when to ask.
 The fault is my own for not getting any further on this.
 Hopefully I can learn faster and think more like a programmer. (The sooner the better right?)
