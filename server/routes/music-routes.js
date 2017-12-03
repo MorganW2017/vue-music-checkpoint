@@ -1,24 +1,74 @@
-var mongoose = require('mongoose')
+var Music = require('../models/song')
+var router = require('express').Router()
 
 
-var schema = new mongoose.Schema({
-    title: { type: String, required: true },
-    albumArt: { type: String },
-    artistName: { type: String },
-    collectionName: { type: String },
-    price: { type: String },
-    preview: {type: String }
-    
+router.get('/api/songs', (req, res, next) => {
+    Songs.find({})
+        .then(songs => {
+            res.send(songs)
+        })
+        .catch(err => {
+            res.status(400).send({ Error: err })
+        })
+})
+
+router.get('/api/songs/:id', (req, res, next) => {
+    Songs.findById(req.params.id)
+        .then(song => {
+            res.send(song)
+        })
+        .catch(err => {
+            res.status(400).send({ Error: err })
+        })
+})
+
+router.post('/api/songs', (req, res, next) => {
+    Songs.create(req.body)
+        .then(song => {
+            let response = {
+                data: song,
+                message: 'Successfully got song'
+            }
+            res.send(response)
+        })
+        .catch(err => {
+            res.status(400).send({ Error: err })
+        })
 })
 
 
-module.exports = mongoose.model('Song', schema)
+router.put('/api/songs/:id', (req, res, next) => {
+    var action = 'Update song'
+    songs.findByIdAndUpdate(req.params.id, req.body)
+        .then(data => {
+            res.send(handleResponse(action, data))
+        })
+        .catch(err => {
+            res.status(400).send(handleResponse(action, null, err))
+        })
+})
 
 
+router.delete('/api/songs/:id', (req, res, next) => {
+    Songss.findByIdAndRemove(req.params.id)
+        .then(() => {
+            res.send({ message: 'RIP Music' })
+        })
+        .catch(err => {
+            res.status(400).send({ Error: err })
+        })
+})
 
-// title: song.trackName,
-// albumArt: song.artworkUrl60,
-// artist: song.artistName,
-// collection: song.collectionName,
-// price: song.collectionPrice,
-// preview: song.previewUrl
+function handleResponse(action, data, error) {
+    var response = {
+        message: action,
+        data: data
+    }
+    if (error) {
+        response.error = error
+    }
+    return response
+}
+
+
+module.exports = router
