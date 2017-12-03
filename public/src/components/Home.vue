@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-          <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
     <mytunes class="mytunes">
 
     </mytunes>
@@ -13,7 +12,7 @@
 <script>
   import itunes from './itunes'
   import mytunes from './mytunes'
- 
+
   export default {
     name: 'home',
     data() {
@@ -21,7 +20,7 @@
 
       }
     },
-    components:{ 
+    components: {
       itunes,
       mytunes
     }
