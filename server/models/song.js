@@ -1,14 +1,12 @@
 var mongoose = require('mongoose')
-var title="trackName";
 
 var schema = new mongoose.Schema({
     trackName: { type: String, required: true },
-    albumArt: { type: String },
+    artworkUrl100: { type: String },
     artistName: { type: String },
     collectionName: { type: String },
-    price: { type: String },
-    preview: {type: String }
-    
+    votes: { type: Number },
+    previewUrl: {type: String }
 })
 
 

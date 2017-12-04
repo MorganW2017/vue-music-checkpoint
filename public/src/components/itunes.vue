@@ -38,6 +38,9 @@
       },
       addToMyTunes(i) {
         this.$store.dispatch('addToMyTunes', i)
+      }, 
+      removeTrack(track) {
+        this.$store.dispatch('removeTrack', track)
       }
     },
     computed: {

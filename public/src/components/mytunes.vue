@@ -1,6 +1,9 @@
 <template>
   <div class="mytunes">
-    <button @click="removeTrack" class="btn btn-danger">Remove Track</button>
+    <div v-for="song in mytunes">
+      <button @click="removeTrack(song)" class="btn btn-danger">Remove Track</button>
+      {{song.trackName}}
+    </div>
   </div>
 </template>
 
@@ -11,6 +14,9 @@
       return {
       }
     },
+    mounted() {
+      this.$store.dispatch('getMyTunes')
+    },
     methods: {
       function() {
         this.$store.dispatch()
@@ -19,11 +25,14 @@
         return {
 
         }
+      },
+      removeTrack(track) {
+        this.$store.dispatch('removeTrack', track)
       }
     },
     computed: {
       mytunes() {
-        return this.$store.state.mytunes.track //<-- add something here
+        return this.$store.state.myTunes //<-- add something here
       }
     }
   }

@@ -10,8 +10,14 @@ var store = new vuex.Store({
     results: []
   },
   mutations: {
+    handleError(state, err) {
+      state.error = err
+    },
     setResults(state, results) {
       state.results = results
+    },
+    setMyTunes(state, myTunes) {
+      state.myTunes = myTunes
     }
   },
   actions: {
@@ -30,16 +36,17 @@ var store = new vuex.Store({
     },
     getMyTunes({ commit, dispatch }) {
       $.get('//localhost:3000/api/songs')
-        .then(data => {
-          commit('setResults', data)
+        .then(res => {
+          commit('setMyTunes', res)
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
     addToMyTunes({ commit, dispatch }, track) {
-      $.post('http://localhost:3000/api/songs', track)
-        .then(res => {
+      console.log(track)
+      $.post('//localhost:3000/api/songs', track)
+        .then(data => {
           dispatch('getMyTunes')
         })
         .catch(err => {
@@ -47,14 +54,15 @@ var store = new vuex.Store({
         })
     },
     removeTrack({ commit, dispatch }, track) {
+      console.log(track)
       //Removes track from the database with delete
       $.ajax({
-        url: 'http://localhost:3000/api/songs/' + id,
+        url: 'http://localhost:3000/api/songs/' + track._id,
         method: 'DELETE'
       })
-        .then(res => {
+        .then(data => {
           dispatch('getMyTunes')
-        }) 
+        })
         .catch(err => {
           commit('handleError', err)
         })
