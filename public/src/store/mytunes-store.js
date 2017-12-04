@@ -30,19 +30,35 @@ var store = new vuex.Store({
     },
 
     getMyTunes({ commit, dispatch }) {
-      api('tracks/' + id)
-        .then(res => {
-          commit('setResults', res.data.data)
+      $.get('//localhost:300/api/songs')
+        .then(data => {
+          commit('setResults', data)
         })
         .catch(err => {
           commit('handleError', err)
         })
     },
     addToMyTunes({ commit, dispatch }, track) {
-      //this will post to your server adding a new track to your tunes
+      $.post('http://localhost:3000/api/songs', track)
+        .then(res => {
+          dispatch('getMyTunes')
+        })
+        .catch(err => {
+          commit('handleError', err)
+        })
     },
     removeTrack({ commit, dispatch }, track) {
       //Removes track from the database with delete
+      $.ajax({
+        url: 'http://localhost:3000/api/songs/' + id,
+        method: 'DELETE'
+      })
+        .then(res => {
+          dispatch('getMyTunes')
+        }) 
+        .catch(err => {
+          commit('handleError', err)
+        })
     },
     promoteTrack({ commit, dispatch }, track) {
       //this should increase the position / upvotes and downvotes on the track

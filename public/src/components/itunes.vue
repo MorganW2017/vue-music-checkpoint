@@ -14,7 +14,7 @@
           <audio controls>
             <source v-bind:src="song.previewUrl" type="audio/mpeg" />
           </audio>
-          <button @click.prevent="addToMyTunes"></button>
+          <button @click="addToMyTunes(song)" type="submit" class="btn btn-primary">Add to Playlist</button>
         </div>
       </div>
     </div>

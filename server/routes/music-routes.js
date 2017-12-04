@@ -39,7 +39,7 @@ router.post('/api/songs', (req, res, next) => {
 
 router.put('/api/songs/:id', (req, res, next) => {
     var action = 'Update song'
-    songs.findByIdAndUpdate(req.params.id, req.body)
+    Songs.findByIdAndUpdate(req.params.id, req.body)
         .then(data => {
             res.send(handleResponse(action, data))
         })
@@ -50,7 +50,7 @@ router.put('/api/songs/:id', (req, res, next) => {
 
 
 router.delete('/api/songs/:id', (req, res, next) => {
-    Songss.findByIdAndRemove(req.params.id)
+    Songs.findByIdAndRemove(req.params.id)
         .then(() => {
             res.send({ message: 'RIP Music' })
         })

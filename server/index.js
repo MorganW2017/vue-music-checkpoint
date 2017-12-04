@@ -4,9 +4,9 @@ var bp = require('body-parser')
 var DBConnect = require('./config/mlab/mlab-config')
 // var sessions = require('./auth/sessions')
 var cors = require('cors')
-var port = 9001
-var playlistRoutes = require('./Server/routes/playlist-routes')
-var songRoutes = require('./Server/routes/song-routes')
+var port = 3000
+var playlistRoutes = require('./routes/playlist-routes')
+var songRoutes = require('./routes/music-routes')
 
 
 server.use(cors({}))
