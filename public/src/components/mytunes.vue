@@ -1,8 +1,16 @@
 <template>
   <div class="mytunes">
     <div v-for="song in mytunes">
-      <button @click="removeTrack(song)" class="btn btn-danger">Remove Track</button>
-      {{song.trackName}}
+      <div>
+        <img id="pic" v-bind:src="song.artworkUrl100" />
+        <h4>{{song.trackName}}</h4>
+        <h4>{{song.artistName}}</h4>
+        <h4>{{song.collectionName}}</h4>
+        <audio controls>
+          <source v-bind:src="song.previewUrl" type="audio/mpeg" />
+        </audio>
+        <button @click="removeTrack(song)" class="btn btn-danger">Remove Track</button>
+      </div>
     </div>
   </div>
 </template>

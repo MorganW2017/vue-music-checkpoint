@@ -18,6 +18,9 @@ var store = new vuex.Store({
     },
     setMyTunes(state, myTunes) {
       state.myTunes = myTunes
+    },
+    setVotes(state, votes) {
+      state.votes = votes
     }
   },
   actions: {
@@ -44,7 +47,6 @@ var store = new vuex.Store({
         })
     },
     addToMyTunes({ commit, dispatch }, track) {
-      console.log(track)
       $.post('//localhost:3000/api/songs', track)
         .then(data => {
           dispatch('getMyTunes')
@@ -54,8 +56,6 @@ var store = new vuex.Store({
         })
     },
     removeTrack({ commit, dispatch }, track) {
-      console.log(track)
-      //Removes track from the database with delete
       $.ajax({
         url: 'http://localhost:3000/api/songs/' + track._id,
         method: 'DELETE'
@@ -68,12 +68,11 @@ var store = new vuex.Store({
         })
     },
     promoteTrack({ commit, dispatch }, track) {
-      //this should increase the position / upvotes and downvotes on the track
     },
     demoteTrack({ commit, dispatch }, track) {
       api.delete('track/' + track._id)
-        .then(res => {
-          dispatch('getResults')
+        .then(data => {
+          dispatch('getMyTunes')
         })
         .catch(err => {
           commit('handleError', err)
