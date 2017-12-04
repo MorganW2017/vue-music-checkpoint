@@ -1,4 +1,4 @@
-var Music = require('../models/song')
+var Songs = require('../models/song')
 var router = require('express').Router()
 
 

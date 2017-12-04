@@ -31,7 +31,7 @@
 <style>
   .mytunes {
     display: inline-block;
-    min-height: 500px;
+    min-height: 450px;
     min-width: 45%;
     /* background: green; */
   }
@@ -39,7 +39,7 @@
   .itunes {
     display: inline-block;
     /* background: red; */
-    min-height: 500px;
+    min-height: 450px;
     min-width: 45%;
   }
 </style>

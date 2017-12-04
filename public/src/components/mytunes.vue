@@ -1,6 +1,6 @@
 <template>
   <div class="mytunes">
-
+    <button @click="removeTrack" class="btn btn-danger">Remove Track</button>
   </div>
 </template>
 
@@ -23,7 +23,7 @@
     },
     computed: {
       mytunes() {
-        return this.$store.state.mytunes //<-- add something here
+        return this.$store.state.mytunes.track //<-- add something here
       }
     }
   }

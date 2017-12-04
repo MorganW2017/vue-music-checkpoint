@@ -6,7 +6,7 @@
         <button type="submit">Search Artists</button>
       </form>
       <div v-for="song in songs">
-        <div v-bind:id="song.trackId">
+        <div>
           <img id="pic" v-bind:src="song.artworkUrl100" />
           <h4>{{song.trackName}}</h4>
           <h4>{{song.artistName}}</h4>

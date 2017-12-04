@@ -28,9 +28,8 @@ var store = new vuex.Store({
       });
       // console.log(data.results)
     },
-
     getMyTunes({ commit, dispatch }) {
-      $.get('//localhost:300/api/songs')
+      $.get('//localhost:3000/api/songs')
         .then(data => {
           commit('setResults', data)
         })

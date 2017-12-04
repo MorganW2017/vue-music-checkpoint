@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
-
+var title="trackName";
 
 var schema = new mongoose.Schema({
-    title: { type: String, required: true },
+    trackName: { type: String, required: true },
     albumArt: { type: String },
     artistName: { type: String },
     collectionName: { type: String },
